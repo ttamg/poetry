@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
     from poetry.config.config import Config
     from poetry.core.packages.project_package import ProjectPackage
-    from poetry.packages.locker import Locker
+    from poetry.packages.locker import BaseLocker
     from poetry.plugins.plugin_manager import PluginManager
     from poetry.repositories.pool import Pool
 
@@ -26,7 +26,7 @@ class Poetry(BasePoetry):
         file: "Path",
         local_config: dict,
         package: "ProjectPackage",
-        locker: "Locker",
+        locker: "BaseLocker",
         config: "Config",
     ):
         from poetry.repositories.pool import Pool
@@ -39,7 +39,7 @@ class Poetry(BasePoetry):
         self._plugin_manager: Optional["PluginManager"] = None
 
     @property
-    def locker(self) -> "Locker":
+    def locker(self) -> "BaseLocker":
         return self._locker
 
     @property
@@ -50,7 +50,7 @@ class Poetry(BasePoetry):
     def config(self) -> "Config":
         return self._config
 
-    def set_locker(self, locker: "Locker") -> "Poetry":
+    def set_locker(self, locker: "BaseLocker") -> "Poetry":
         self._locker = locker
 
         return self

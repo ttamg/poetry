@@ -357,7 +357,7 @@ def test_add_directory_constraint(
     mocker: "MockerFixture",
 ):
     p = mocker.patch("pathlib.Path.cwd")
-    p.return_value = Path(__file__).parent
+    p.return_value = Path(__file__).parent.parent.parent / "fixtures" / "git"
 
     repo.add_package(get_package("pendulum", "1.4.4"))
     repo.add_package(get_package("cleo", "0.6.5"))
@@ -401,7 +401,7 @@ def test_add_directory_with_poetry(
     mocker: "MockerFixture",
 ):
     p = mocker.patch("pathlib.Path.cwd")
-    p.return_value = Path(__file__) / ".."
+    p.return_value = Path(__file__).parent.parent.parent / "fixtures" / "git"
 
     repo.add_package(get_package("pendulum", "1.4.4"))
 
@@ -435,7 +435,7 @@ def test_add_file_constraint_wheel(
     poetry: "Poetry",
 ):
     p = mocker.patch("pathlib.Path.cwd")
-    p.return_value = poetry.file.parent
+    p.return_value = Path(__file__).parent.parent.parent / "fixtures" / "distributions"
 
     repo.add_package(get_package("pendulum", "1.4.4"))
 
@@ -475,7 +475,7 @@ def test_add_file_constraint_sdist(
     mocker: "MockerFixture",
 ):
     p = mocker.patch("pathlib.Path.cwd")
-    p.return_value = Path(__file__) / ".."
+    p.return_value = Path(__file__).parent.parent.parent / "fixtures" / "distributions"
 
     repo.add_package(get_package("pendulum", "1.4.4"))
 
@@ -1296,7 +1296,7 @@ def test_add_directory_constraint_old_installer(
     old_tester: "CommandTester",
 ):
     p = mocker.patch("pathlib.Path.cwd")
-    p.return_value = Path(__file__) / ".."
+    p.return_value = Path(__file__).parent.parent.parent / "fixtures" / "git"
 
     repo.add_package(get_package("pendulum", "1.4.4"))
     repo.add_package(get_package("cleo", "0.6.5"))
@@ -1337,7 +1337,7 @@ def test_add_directory_with_poetry_old_installer(
     old_tester: "CommandTester",
 ):
     p = mocker.patch("pathlib.Path.cwd")
-    p.return_value = Path(__file__) / ".."
+    p.return_value = Path(__file__).parent.parent.parent / "fixtures" / "git"
 
     repo.add_package(get_package("pendulum", "1.4.4"))
 
@@ -1372,7 +1372,7 @@ def test_add_file_constraint_wheel_old_installer(
     old_tester: "CommandTester",
 ):
     p = mocker.patch("pathlib.Path.cwd")
-    p.return_value = Path(__file__) / ".."
+    p.return_value = Path(__file__).parent.parent.parent / "fixtures" / "distributions"
 
     repo.add_package(get_package("pendulum", "1.4.4"))
 
@@ -1414,7 +1414,7 @@ def test_add_file_constraint_sdist_old_installer(
     old_tester: "CommandTester",
 ):
     p = mocker.patch("pathlib.Path.cwd")
-    p.return_value = Path(__file__) / ".."
+    p.return_value = Path(__file__).parent.parent.parent / "fixtures" / "distributions"
 
     repo.add_package(get_package("pendulum", "1.4.4"))
 
