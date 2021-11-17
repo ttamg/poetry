@@ -24,11 +24,11 @@ test_task:
   env_script:
     - echo "PATH=/.local/bin:${PATH}" >> $CIRRUS_ENV
   poetry_script:
-    - curl -sL https://install.python-poetry.org | $PYTHON - -y
+    - curl -sL https://install.python-poetry.org | $PYTHON - -y --git https://github.com/python-poetry/poetry
     - poetry config virtualenvs.in-project true
   test_script:
-    - poetry install
-    - poetry run pytest -q --junitxml=junit.xml tests
+    - poetry install --with=dev,ci
+    - poetry run pytest -p no:clarity -p no:sugar --no-cov --junitxml=junit.xml
   on_failure:
     annotate_failure_artifacts:
       path: junit.xml
